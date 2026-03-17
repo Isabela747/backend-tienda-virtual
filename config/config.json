@@ -1,10 +1,9 @@
 {
   "development": {
-    "username": "$DB_USER",
-    "password": "$DB_PASSWORD",
-    "database": "$DB_NAME",
-    "host": "$DB_HOST",
-    "port": "$DB_PORT",
+    "username": "root",
+    "password": null,
+    "database": "db_tienda",
+    "port": 3307,
     "dialect": "mysql"
   },
   "test": {
