@@ -9,9 +9,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+
       id_usuario: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'tbc_usuarios',
+          key:'id',
+        },
+        onUpdate: 'NO ACTION',
+        onDelete: 'NO ACTION'
+
       },
       estado: {
         type: Sequelize.STRING,
@@ -22,6 +30,10 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.NOW
       },
+
+      
+
+
       total: {
         type: Sequelize.FLOAT,
         allowNull: false
