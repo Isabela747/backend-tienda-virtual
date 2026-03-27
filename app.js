@@ -17,13 +17,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 //Configurar las rutas de bienvenida al servidor
 app.get('/',(req,res)=> res.status(200).send({
     message: 'Bienvenido a la API REST de compras.',
-}))
-
-//require('./routes/route_categorias')(app);
-const rutaCategorias = require('./routes/route_categorias');
-app.use(rutaCategorias);
-
-
+}));
+//creando rutas
+require('./routes/route_categorias')(app);
 
 //Cambiar el puerto
 const port = parseInt(process.env.PORT, 10) || 8000;
