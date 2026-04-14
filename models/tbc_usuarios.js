@@ -1,62 +1,61 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
+
   class tbc_usuarios extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      this.hasMany(models.tbb_carrito, {
+        foreignKey: 'id_usuario',
+        as: 'tbb_carrito'
+      });
     }
   }
-  tbc_usuarios.init({
-    nombre:{
-       type:DataTypes.STRING(100),
-       allowNull: false,
-    },
 
-    direccion:{
-       type: DataTypes.STRING(150),
-     allowNull: false,
-    },
-    
-    password:{
-       type:DataTypes.STRING(15),
-       allowNull: false,
-    },
-       
-    email: {
-      type:DataTypes.STRING(120),
-      allowNull: false,
-    },
-    telefono: {
-      type:DataTypes.ENUM(225),
-      allowNull: false,
-    },
-    rol: {
-      tipe:DataTypes.STRING,
-      allowNull: false
-  }, 
+  tbc_usuarios.init(
+    {
+      nombre: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+      },
 
-   fecha_registro: {
-      tipe:DataTypes.DATE,
-      allowNull: false
-  }, 
+      direccion: {
+        type: DataTypes.STRING(150),
+        allowNull: false,
+      },
 
-    sequelize,
-    modelName: 'tbc_usuarios',
-  });
+      password: {
+        type: DataTypes.STRING(15),
+        allowNull: false,
+      },
 
-  tbc_usuarios.associate = function(models) {
-    tbc_usuarios.hasMany(models.tbb_carrito, {
-      foreignKey: 'id_usuario',
-      as: 'tbb_carrito'
-  })
-}
+      email: {
+        type: DataTypes.STRING(120),
+        allowNull: false,
+      },
+
+      telefono: {
+        type: DataTypes.STRING(15),
+        allowNull: false,
+      },
+
+      rol: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+
+      fecha_registro: {
+        type: DataTypes.DATE,
+        allowNull: false
+      },
+    },
+    {
+      sequelize,
+      modelName: 'tbc_usuarios',
+      tableName: 'tbc_usuarios',
+      timestamps: false
+    }
+  );
 
   return tbc_usuarios;
 };

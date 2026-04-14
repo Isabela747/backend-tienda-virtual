@@ -1,7 +1,6 @@
 require('dotenv').config()
 
 
-
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
@@ -20,6 +19,11 @@ app.get('/',(req,res)=> res.status(200).send({
 }));
 //creando rutas
 require('./routes/route_categorias')(app);
+require('./routes/route_carrito')(app);
+require('./routes/route_carritos_detalle')(app);
+require('./routes/route_productos')(app);
+require('./routes/route_usuarios')(app);
+
 
 //Cambiar el puerto
 const port = parseInt(process.env.PORT, 10) || 8000;
