@@ -10,7 +10,7 @@ module.exports = (app) => {
 
     app.put('/api/carritos_detalle/:id', carritos_detalleController.update);
     
-    app.delete('/api/carritos_detalle/:id', carritos_detalleController.delate);
+    app.delete('/api/carritos_detalle/:id', carritos_detalleController.delete);
 
 
 

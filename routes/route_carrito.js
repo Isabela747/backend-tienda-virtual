@@ -6,7 +6,7 @@ module.exports = (app) => {
     app.get('/api/carrito/:nombre', carritoController.find);
     app.post('/api/carrito/nombre/:nombre/', carritoController.create);
     app.put('/api/carrito/:id', carritoController.update);
-    app.delete('/api/carrito/:id', carritoController.delate);
+    app.delete('/api/carrito/:id', carritoController.delete);
 
 
 

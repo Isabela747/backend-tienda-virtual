@@ -1,35 +1,44 @@
-require('dotenv').config()
-
+require('dotenv').config();
 
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-//Tipo de servidor que realizaremos
 const http = require('http');
-//Iniciar y configurar express
+
+// 🔥 IMPORTAR TODAS LAS RUTAS
+const carritoRoutes = require('./routes/route_carrito');
+const categoriasRoutes = require('./routes/route_categorias');
+const productosRoutes = require('./routes/route_productos');
+const usuariosRoutes = require('./routes/route_usuarios');
+const carritoDetalleRoutes = require('./routes/route_carritos_detalle');
+
 const app = express();
-//Log mostrar informacion en consola
+
 app.use(logger('dev'));
-//Parsear las entradas de solicitud de datos
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
-//Configurar las rutas de bienvenida al servidor
-app.get('/',(req,res)=> res.status(200).send({
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Ruta principal
+app.get('/', (req, res) => res.status(200).send({
     message: 'Bienvenido a la API REST de compras.',
 }));
-//creando rutas
-require('./routes/route_categorias')(app);
-require('./routes/route_carrito')(app);
-require('./routes/route_carritos_detalle')(app);
-require('./routes/route_productos')(app);
-require('./routes/route_usuarios')(app);
 
+// 🔥 CONECTAR TODAS LAS RUTAS
+carritoRoutes(app);
+categoriasRoutes(app);
+productosRoutes(app);
+usuariosRoutes(app);
+carritoDetalleRoutes(app);
 
-//Cambiar el puerto
+// Puerto
 const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);
-//Crear servidor basado en el puerto y caracteristicas de la app
+
 const server = http.createServer(app);
-server.listen(port);
+
+server.listen(port, () => {
+    console.log(`¡Servidor encendido correctamente!`);
+    console.log(`http://localhost:${port}`);
+});
 
 module.exports = app;

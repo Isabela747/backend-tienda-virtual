@@ -25,7 +25,7 @@ module.exports = {
     .then(carrito => res.status(200).send(carrito))
     .catch(error => res.status(400).send(error))
  },
- delate(req, res){
+ delete(req, res){
     return carrito.destroy({
         where :{ id: req.params.id
         }
