@@ -1,4 +1,5 @@
-const producto = require('../models').producto;
+const db = require('../models');
+const producto = db.tbb_productos;
 
 module.exports = {
 

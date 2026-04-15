@@ -10,7 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // Relación con carrito - ON DELETE CASCADE
+      this.belongsTo(models.tbb_carrito, {
+        foreignKey: 'id_carrito',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
+      
+      // Relación con producto - ON DELETE CASCADE
+      this.belongsTo(models.tbb_productos, {
+        foreignKey: 'id_producto',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
     }
   }
   tbd_carritos_detalle.init({

@@ -10,7 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // Relación con categorías - ON DELETE CASCADE
+      this.belongsTo(models.tbc_categorias, {
+        foreignKey: 'id_categoria',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      });
     }
   }
   tbb_productos.init({

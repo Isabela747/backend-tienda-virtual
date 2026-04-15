@@ -1,4 +1,5 @@
-const usuario = require('../models').usuario;
+const db = require('../models');
+const usuario = db.tbc_usuarios;
 
 module.exports = {
 

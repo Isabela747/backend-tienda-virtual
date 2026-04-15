@@ -21,6 +21,7 @@ fs
   .filter(file => {
     return (
       file.indexOf('.') !== 0 &&
+      
       file !== basename &&
       file.slice(-3) === '.js' &&
       file.indexOf('.test.js') === -1
@@ -36,6 +37,13 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
+
+// 🔥 ALIAS PARA LOS MODELOS (facilita el acceso desde controladores)
+db.Categoria = db.tbc_categorias;
+db.producto = db.tbb_productos;
+db.usuario = db.tbc_usuarios;
+db.carrito = db.tbb_carrito;
+db.carritos_detalle = db.tbd_carritos_detalle;
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

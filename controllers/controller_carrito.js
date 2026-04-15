@@ -1,15 +1,18 @@
 const Sequelize = require('sequelize')
 const db = require ('../models');
-const carrito = require('../models').carrito;
+const carrito = db.tbb_carrito;
 
 module.exports = {
  create(req, res){
     return carrito
     .create({
-        nombre: req.body.nombre
+        id_usuario: req.body.id_usuario,
+        estado: req.body.estado,
+        fecha_creacion: new Date(),
+        total: req.body.total || 0
     })
     .then(carrito => res.status(200).send(carrito))
-    .catch(error => res.send(400).send(error))
+    .catch(error => res.status(400).send(error))
  },
  list(_,res){
     return carrito.findAll({})
@@ -17,11 +20,7 @@ module.exports = {
     .catch(error => res.status(400).send(error))
  },
  find(req, res){
-    return carrito.findAll({
-        where: {
-            nombre: req.params.nombre,
-        }
-    })
+    return carrito.findByPk(req.params.id)
     .then(carrito => res.status(200).send(carrito))
     .catch(error => res.status(400).send(error))
  },
@@ -36,7 +35,8 @@ module.exports = {
  update(req, res){
     return carrito.update(
         {
-            nombre: req.body.nombre
+            estado: req.body.estado,
+            total: req.body.total
         },
         {
             where:{

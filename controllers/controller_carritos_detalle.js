@@ -1,4 +1,5 @@
-const carritos_detalle = require('../models').carritos_detalle;
+const db = require('../models');
+const carritos_detalle = db.tbd_carritos_detalle;
 
 module.exports = {
 
