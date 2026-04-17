@@ -5,11 +5,12 @@ module.exports = {
 
     create(req, res){
         return producto.create({
-            id_categoria: req.body.id_categoria,
             nombre: req.body.nombre,
             descripcion: req.body.descripcion,
             precio: req.body.precio,
-            stock: req.body.stock
+            stock: req.body.stock,
+            id_categoria: req.body.id_categoria
+
         })
         .then(data => res.status(200).send(data))
         .catch(error => res.status(400).send(error));
